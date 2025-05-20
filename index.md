@@ -70,7 +70,7 @@ title: 9M2PJU Zakat Calculator
 
 <div class="calculator-container">
   <h1>🕌 9M2PJU Zakat Calculator</h1>
-  <p>This calculator includes zakat on cash, gold, silver, business inventory, agricultural produce, and livestock. Gold and silver prices are fetched live.</p>
+  <p>This calculator includes zakat on cash, gold, silver, business inventory, agricultural produce, and livestock.</p>
 
   <form id="zakatForm" onsubmit="event.preventDefault(); calculateZakat();">
     <label>💵 Cash (RM):
