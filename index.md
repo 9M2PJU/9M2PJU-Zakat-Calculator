@@ -81,15 +81,15 @@ title: 9M2PJU Zakat Calculator
       <input type="number" id="gold" value="0" step="0.01" />
     </label>
     <label>Gold price per gram (RM):
-      <input type="number" id="goldPrice" value="0" step="0.01" readonly />
-    </label>
+  <input type="number" id="goldPrice" value="350" step="0.01" />
+</label>
 
     <label>🥈 Silver (grams):
       <input type="number" id="silver" value="0" step="0.01" />
     </label>
     <label>Silver price per gram (RM):
-      <input type="number" id="silverPrice" value="0" step="0.01" readonly />
-    </label>
+  <input type="number" id="silverPrice" value="3.50" step="0.01" />
+</label>
 
     <label>📦 Business Inventory (RM):
       <input type="number" id="inventory" value="0" step="0.01" />
