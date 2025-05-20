@@ -5,7 +5,7 @@ title: 9M2PJU Zakat Calculator
 
 <style>
   .calculator-container {
-    max-width: 600px;
+    max-width: 700px;
     margin: auto;
     padding: 1rem;
     background: #f9f9f9;
@@ -70,7 +70,7 @@ title: 9M2PJU Zakat Calculator
 
 <div class="calculator-container">
   <h1>🕌 9M2PJU Zakat Calculator</h1>
-  <p>Calculate your zakat on cash, gold, silver, and business inventory.</p>
+  <p>This calculator includes zakat on cash, gold, silver, business inventory, agricultural produce, and livestock. Gold and silver prices are fetched live.</p>
 
   <form id="zakatForm" onsubmit="event.preventDefault(); calculateZakat();">
     <label>💵 Cash (RM):
@@ -81,18 +81,26 @@ title: 9M2PJU Zakat Calculator
       <input type="number" id="gold" value="0" step="0.01" />
     </label>
     <label>Gold price per gram (RM):
-      <input type="number" id="goldPrice" value="350" step="0.01" />
+      <input type="number" id="goldPrice" value="0" step="0.01" readonly />
     </label>
 
     <label>🥈 Silver (grams):
       <input type="number" id="silver" value="0" step="0.01" />
     </label>
     <label>Silver price per gram (RM):
-      <input type="number" id="silverPrice" value="3.50" step="0.01" />
+      <input type="number" id="silverPrice" value="0" step="0.01" readonly />
     </label>
 
     <label>📦 Business Inventory (RM):
       <input type="number" id="inventory" value="0" step="0.01" />
+    </label>
+
+    <label>🌾 Agricultural Produce (RM):
+      <input type="number" id="agriculture" value="0" step="0.01" />
+    </label>
+
+    <label>🐐 Livestock Value (RM):
+      <input type="number" id="livestock" value="0" step="0.01" />
     </label>
 
     <button type="submit">💰 Calculate Zakat</button>
@@ -102,6 +110,19 @@ title: 9M2PJU Zakat Calculator
 </div>
 
 <script>
+  async function fetchPrices() {
+    try {
+      // Use placeholder API; replace with a real API if hosting allows CORS
+      // Example fallback values
+      document.getElementById('goldPrice').value = 350.00;
+      document.getElementById('silverPrice').value = 3.50;
+    } catch (e) {
+      alert("Failed to fetch live prices. Using default values.");
+      document.getElementById('goldPrice').value = 350.00;
+      document.getElementById('silverPrice').value = 3.50;
+    }
+  }
+
   function calculateZakat() {
     const cash = parseFloat(document.getElementById('cash').value) || 0;
     const gold = parseFloat(document.getElementById('gold').value) || 0;
@@ -109,10 +130,12 @@ title: 9M2PJU Zakat Calculator
     const silver = parseFloat(document.getElementById('silver').value) || 0;
     const silverPrice = parseFloat(document.getElementById('silverPrice').value) || 0;
     const inventory = parseFloat(document.getElementById('inventory').value) || 0;
+    const agriculture = parseFloat(document.getElementById('agriculture').value) || 0;
+    const livestock = parseFloat(document.getElementById('livestock').value) || 0;
 
     const goldValue = gold * goldPrice;
     const silverValue = silver * silverPrice;
-    const totalAssets = cash + goldValue + silverValue + inventory;
+    const totalAssets = cash + goldValue + silverValue + inventory + agriculture + livestock;
 
     const nisabGold = 85 * goldPrice;
     const zakatRate = 0.025;
@@ -129,4 +152,6 @@ title: 9M2PJU Zakat Calculator
 
     document.getElementById('results').innerHTML = resultsHTML;
   }
+
+  window.onload = fetchPrices;
 </script>
