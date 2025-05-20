@@ -73,35 +73,29 @@ title: 9M2PJU Zakat Calculator
   <p>This calculator includes zakat on cash, gold, silver, business inventory, agricultural produce, and livestock.</p>
 
   <form id="zakatForm" onsubmit="event.preventDefault(); calculateZakat();">
-    <label>💵 Cash (RM):
-      <input type="number" id="cash" value="0" step="0.01" />
-    </label>
+    <label for="cash">💵 Cash (RM):</label>
+    <input type="number" id="cash" value="0" step="0.01" min="0" />
 
-    <label>🏅 Gold (grams):
-      <input type="number" id="gold" value="0" step="0.01" />
-    </label>
-    <label>Gold price per gram (RM):
-  <input type="number" id="goldPrice" value="350" step="0.01" />
-</label>
+    <label for="gold">🏅 Gold (grams):</label>
+    <input type="number" id="gold" value="0" step="0.01" min="0" />
 
-    <label>🥈 Silver (grams):
-      <input type="number" id="silver" value="0" step="0.01" />
-    </label>
-    <label>Silver price per gram (RM):
-  <input type="number" id="silverPrice" value="3.50" step="0.01" />
-</label>
+    <label for="goldPrice">Gold price per gram (RM):</label>
+    <input type="number" id="goldPrice" value="350" step="0.01" min="0" />
 
-    <label>📦 Business Inventory (RM):
-      <input type="number" id="inventory" value="0" step="0.01" />
-    </label>
+    <label for="silver">🥈 Silver (grams):</label>
+    <input type="number" id="silver" value="0" step="0.01" min="0" />
 
-    <label>🌾 Agricultural Produce (RM):
-      <input type="number" id="agriculture" value="0" step="0.01" />
-    </label>
+    <label for="silverPrice">Silver price per gram (RM):</label>
+    <input type="number" id="silverPrice" value="3.50" step="0.01" min="0" />
 
-    <label>🐐 Livestock Value (RM):
-      <input type="number" id="livestock" value="0" step="0.01" />
-    </label>
+    <label for="inventory">📦 Business Inventory (RM):</label>
+    <input type="number" id="inventory" value="0" step="0.01" min="0" />
+
+    <label for="agriculture">🌾 Agricultural Produce (RM):</label>
+    <input type="number" id="agriculture" value="0" step="0.01" min="0" />
+
+    <label for="livestock">🐐 Livestock Value (RM):</label>
+    <input type="number" id="livestock" value="0" step="0.01" min="0" />
 
     <button type="submit">💰 Calculate Zakat</button>
   </form>
@@ -110,17 +104,10 @@ title: 9M2PJU Zakat Calculator
 </div>
 
 <script>
-  async function fetchPrices() {
-    try {
-      // Use placeholder API; replace with a real API if hosting allows CORS
-      // Example fallback values
-      document.getElementById('goldPrice').value = 350.00;
-      document.getElementById('silverPrice').value = 3.50;
-    } catch (e) {
-      alert("Failed to fetch live prices. Using default values.");
-      document.getElementById('goldPrice').value = 350.00;
-      document.getElementById('silverPrice').value = 3.50;
-    }
+  function fetchPrices() {
+    // Currently using static fallback prices.
+    document.getElementById('goldPrice').value = 350.00;
+    document.getElementById('silverPrice').value = 3.50;
   }
 
   function calculateZakat() {
